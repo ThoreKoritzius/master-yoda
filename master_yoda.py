@@ -1,17 +1,24 @@
-#Master Yoda: A model that restructues your sentence to speek like yoda
-#Prerequisites: pip install spacy
-#Current configuration only supports english sentences, change the spacy_model variable to switch to different model
+"""
+Master Yoda: A model that restructues your sentence to speek like yoda
+
+Prerequisites: pip install spacy
+
+Current configuration only supports english sentences, change the spacy_model variable to switch to different model
+
+Created on 20-07-2022
+@author: Thore Koritzius
+"""
 
 import spacy
 import os
 
-model = "en_core_web_sm"
+spacy_model = "en_core_web_sm"
 try:
-    nlp = spacy.load(model)
+    nlp = spacy.load(spacy_model)
 except Exception as e:
     #download model in case it doesnt exist
-    os.system(f'python -m spacy download {model}')
-    nlp = spacy.load(model)
+    os.system(f'python -m spacy download {spacy_model}')
+    nlp = spacy.load(spacy_model)
 
 def get_word_graph(node):
     if node.n_lefts + node.n_rights > 0:
